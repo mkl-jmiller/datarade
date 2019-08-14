@@ -1,0 +1,14 @@
+name: list_of_tables
+fit_for_use: operational
+
+endpoint:
+    driver   : mssql
+    host     : host01
+    port     : 21612
+    database : SANDBOX
+
+fields:
+    - name: schema_name
+      type: String
+    - name: table_name
+      type: String

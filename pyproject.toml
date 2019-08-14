@@ -1,0 +1,28 @@
+[build-system]
+requires = ["flit"]
+build-backend = "flit.buildapi"
+
+[tool.flit.metadata]
+module = "query_tools"
+author = "Mike Alfare"
+author-email = "alfare@gmail.com"
+home-page = "https://github.com/mikealfare/query_tools"
+requires = ["sqlalchemy", "marshmallow", "pyyaml", "pyodbc", "pymssql", "bcp"]
+requires-python = ">=3.6,<4"
+description-file = "README.md"
+dist-name = "query_tools"
+keywords = "QueryTools"
+classifiers = [
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3"
+]
+
+[tool.flit.metadata.requires-extra]
+test = [
+    "pytest",
+    "pytest-cov"
+]
+doc = [
+    "sphinx",
+    "sphinx-autodoc-typehints"
+]
