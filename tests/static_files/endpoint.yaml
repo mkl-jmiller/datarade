@@ -1,5 +1,0 @@
-driver: mssql
-host: host01
-port: 21612
-database: DATABASE
-schema: data

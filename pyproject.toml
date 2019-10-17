@@ -3,26 +3,40 @@ requires = ["flit"]
 build-backend = "flit.buildapi"
 
 [tool.flit.metadata]
-module = "query_tools"
+module = "datarade"
 author = "Mike Alfare"
 author-email = "alfare@gmail.com"
-home-page = "https://github.com/mikealfare/query_tools"
-requires = ["sqlalchemy", "marshmallow", "pyyaml", "pyodbc", "pymssql", "bcp"]
-requires-python = ">=3.6,<4"
-description-file = "README.md"
-dist-name = "query_tools"
-keywords = "QueryTools"
-classifiers = [
-    "Intended Audience :: Developers",
-    "Programming Language :: Python :: 3"
+home-page = "https://github.com/mikealfare/datarade"
+
+requires = [
+    "sqlalchemy >=1.3.8,<2.0",
+    "marshmallow >=3.2.0,<4.0",
+    "pyyaml >=5.1.2,<6.0",
+    "pyodbc >=4.0.27,<5.0",
+    "pymssql >=2.1.4,<3.0",
+    "bcp >=0.2.1,<0.3",
+    "requests >=2.22.0,<3.0",
+    "requests_ntlm >=1.1.0,<2.0"
 ]
+requires-python = ">=3.7,<4.0"
+description-file = "README.md"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3.7",
+    "Operating System :: Microsoft :: Windows",
+    "Topic :: Database"
+]
+
+keywords = "datarade mssql database"
 
 [tool.flit.metadata.requires-extra]
 test = [
-    "pytest",
-    "pytest-cov"
+    "pytest >=5.1.3,<6.0",
+    "pytest-cov >=2.7.1,<3.0"
 ]
 doc = [
-    "sphinx",
-    "sphinx-autodoc-typehints"
+    "sphinx >=2.2.0,<3.0",
+    "sphinx-autodoc-typehints >=1.8.0,<2.0",
+    "sphinx_rtd_theme >=0.4.3,<0.5"
 ]
