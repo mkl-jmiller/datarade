@@ -6,7 +6,6 @@ from urllib.parse import quote_plus
 
 from bcp import BCP, Connection
 from sqlalchemy import MetaData, create_engine, schema, types, Table
-import pyodbc
 
 from datarade import git_client
 
@@ -162,6 +161,8 @@ class Database:
         Returns: the latest SQL Server Native Client for MS SQL Server databases
         """
         if self.driver == 'mssql':
+            import pyodbc
+
             installed_drivers = pyodbc.drivers()
             sql_server_native_clients = [client
                                          for client in installed_drivers
