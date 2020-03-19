@@ -1,5 +1,7 @@
 # Datarade
 
+[![Documentation Status](https://readthedocs.org/projects/datarade/badge/?version=latest)](https://datarade.readthedocs.io/en/latest/?badge=latest)
+
 **This library provides tools that allow datasets to be defined separately from a pipeline.**
 
 ---
