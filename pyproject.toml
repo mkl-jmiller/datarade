@@ -6,17 +6,16 @@ build-backend = "flit.buildapi"
 module = "datarade"
 author = "Mike Alfare"
 author-email = "alfare@gmail.com"
-home-page = "https://github.com/mikealfare/datarade"
+home-page = "https://github.com/fivestack/datarade"
 
 requires = [
-    "sqlalchemy >=1.3.8,<2.0",
-    "marshmallow >=3.2.0,<4.0",
-    "pyyaml >=5.1.2,<6.0",
-    "pyodbc >=4.0.27,<5.0",
-    "pymssql >=2.1.4,<3.0",
-    "bcp >=0.2.1,<0.3",
-    "requests >=2.22.0,<3.0",
-    "requests_ntlm >=1.1.0,<2.0"
+    "marshmallow>=3.4,<4.0",
+    "pyyaml>=5.1,<6.0",
+    "requests>=2.22,<3.0",
+    "azure-devops>=6.0,<7.0",
+    "sqlalchemy>=1.3,<2.0",
+    "pyodbc>=4.0,<5.0",
+    "bcp>=0.3.0"
 ]
 requires-python = ">=3.7,<4.0"
 description-file = "README.md"
@@ -28,15 +27,15 @@ classifiers = [
     "Topic :: Database"
 ]
 
-keywords = "datarade mssql database"
+keywords = "datarade mssql database data pipeline"
 
 [tool.flit.metadata.requires-extra]
 test = [
-    "pytest >=5.1.3,<6.0",
-    "pytest-cov >=2.7.1,<3.0"
+    "pytest>=5.1,<6.0",
+    "pytest-cov>=2.7,<3.0"
 ]
 doc = [
-    "sphinx >=2.2.0,<3.0",
-    "sphinx-autodoc-typehints >=1.8.0,<2.0",
-    "sphinx_rtd_theme >=0.4.3,<0.5"
+    "sphinx>=2.4,<3.0",
+    "sphinx-autodoc-typehints>=1.10,<2.0",
+    "sphinx_rtd_theme>=0.4,<0.5"
 ]

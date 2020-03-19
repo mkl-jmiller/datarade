@@ -1,13 +1,7 @@
-.. Datarade documentation master file, created by
-   sphinx-quickstart on Wed May 15 15:38:21 2019.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
-
 Welcome to Datarade's documentation!
 ====================================
 
-The source repository is located
-`here <https://github.com/mikealfare/datarade>`_
+The source repository is located `here <https://github.com/fivestack/datarade>`_.
 
 .. toctree::
    :maxdepth: 2
@@ -23,119 +17,33 @@ Indices and tables
 API
 ===
 
-Dataset Catalog
----------------
-
-.. automodule:: datarade.services.dataset_catalog.api
+.. automodule:: datarade.services
    :members:
-   :private-members:
 
-Dataset Subscription
---------------------
+Developer Docs
+==============
 
-.. automodule:: datarade.services.dataset_subscription.api
-   :members:
-   :private-members:
-
-Services
-========
-
-Dataset Catalog
----------------
-
-.. automodule:: datarade.services.dataset_catalog.services
-   :members:
-   :private-members:
-
-.. automodule:: datarade.services.dataset_catalog.unit_of_work
-   :members:
-   :private-members:
-
-.. automodule:: datarade.services.dataset_catalog.message_bus
-   :members:
-   :private-members:
-
-Dataset Subscription
---------------------
-
-.. automodule:: datarade.services.dataset_subscription.handlers
-   :members:
-   :private-members:
-
-.. automodule:: datarade.services.dataset_subscription.utils
-   :members:
-   :private-members:
-
-.. automodule:: datarade.services.dataset_subscription.unit_of_work
-   :members:
-   :private-members:
-
-.. automodule:: datarade.services.dataset_subscription.message_bus
-   :members:
-   :private-members:
-
-Domain
-======
+If you are using datarade as a library, you likely can stop after the API section above.
+But if you're interested in how the library works, or want o contribute to it,
+please read further.
 
 Models
 ------
 
-.. automodule:: datarade.domain.models
+.. automodule:: datarade.models
    :members:
    :private-members:
 
-Commands
---------
+Dataset Schemas
+---------------
 
-.. automodule:: datarade.domain.commands
+.. automodule:: datarade.schemas
    :members:
    :private-members:
 
-Events
-------
-
-.. automodule:: datarade.domain.events
-   :members:
-   :private-members:
-
-Exceptions
+Git Client
 ----------
 
-.. automodule:: datarade.domain.exceptions
-   :members:
-   :private-members:
-
-Repositories
-============
-
-Abstract Repositories
----------------------
-
-.. automodule:: datarade.abstract_repositories.datasets
-   :members:
-   :private-members:
-
-.. automodule:: datarade.abstract_repositories.dataset_containers
-   :members:
-   :private-members:
-
-Implemented Repositories
-------------------------
-
-.. automodule:: datarade.repositories.datasets_git
-   :members:
-   :private-members:
-
-.. automodule:: datarade.repositories.dataset_containers_stateless
-   :members:
-   :private-members:
-
-ORMs
-====
-
-Git
----
-
-.. automodule:: datarade.orm.git
+.. automodule:: datarade.git_client
    :members:
    :private-members:
