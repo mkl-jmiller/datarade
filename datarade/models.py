@@ -90,7 +90,7 @@ class Database:
         """
         driver = '{' + self._odbc_driver_name + '}'
         if self.port:
-            server = f'{self.host}:{self.port}'
+            server = f'{self.host},{self.port}'
         else:
             server = self.host
         base_url = f'DRIVER={driver};SERVER={server};DATABASE={self.database_name};'
