@@ -4,8 +4,8 @@ from tests.conftest import services, git_client
 from tests.fakes import FakeDatasetCatalog
 
 
-def generate_dataset(dataset_name: str):
-    return {
+def generate_dataset(dataset_name: str, username: str = None) -> dict:
+    dataset = {
         'name': dataset_name,
         'config': {
             'name': dataset_name,
@@ -13,6 +13,9 @@ def generate_dataset(dataset_name: str):
         },
         'definition': f'select {dataset_name}'
     }
+    if username:
+        dataset['config']['user'] = {'username': username}
+    return dataset
 
 
 def test_get_dataset_catalog_github():
@@ -34,13 +37,18 @@ def test_get_dataset_container():
     assert dataset_container.bcp.connection.host == 'my_host'
 
 
-def test_get_dataset():
+dataset_configs = [
+    generate_dataset(dataset_name='my_dataset'),
+    generate_dataset(dataset_name='my_other_dataset'),
+    generate_dataset(dataset_name='my_dataset', username='my_user')
+]
+
+
+@pytest.mark.parametrize('dataset_config', dataset_configs)
+def test_get_dataset(dataset_config: dict):
     fake_dataset_catalog = FakeDatasetCatalog(repository='', organization='', platform='')
-    dataset_1 = generate_dataset(dataset_name='my_dataset')
-    dataset_2 = generate_dataset(dataset_name='my_other_dataset')
-    fake_dataset_catalog.add(dataset=dataset_1)
-    fake_dataset_catalog.add(dataset=dataset_2)
-    dataset = services.get_dataset(dataset_name=dataset_1['name'], dataset_catalog=fake_dataset_catalog)
-    assert dataset.name == dataset_1['name']
-    dataset = services.get_dataset(dataset_name=dataset_2['name'], dataset_catalog=fake_dataset_catalog)
-    assert dataset.name == dataset_2['name']
+    fake_dataset_catalog.add(dataset=dataset_config)
+    dataset = services.get_dataset(dataset_name=dataset_config['name'], dataset_catalog=fake_dataset_catalog)
+    assert dataset.name == dataset_config['name']
+    if dataset_config['config'].get('user', None) is not None:
+        assert dataset.user.username == dataset_config['config']['user']['username']

@@ -118,6 +118,8 @@ def write_dataset(dataset: 'models.Dataset', dataset_container: 'models.DatasetC
         password: the password for the user
     """
     dataset_container.create_table(dataset=dataset)
+    if username is None and dataset.user is not None:
+        username = dataset.user.username
     data_file = DataFile(delimiter='|~|')
     source_bcp = dataset.database.bcp(username=username, password=password)
     source_bcp.dump(query=dataset.definition, output_file=data_file)

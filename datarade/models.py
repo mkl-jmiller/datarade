@@ -178,6 +178,25 @@ class Database:
             raise DriverNotSupportedException
 
 
+class User:
+    """
+    Represents the user that should be used to access the data.
+
+    This should not store the password for obvious reasons, but can be used in conjunction with the password
+    that is passed to the Database object. This makes it so that the client application that's consuming this
+    dataset only needs to know the password for the account, not the account or where the account needs to
+    be setup. It effectively turns the password into a token. This currently supports database users
+    (e.g. a SQL Server account). To connect as an AD account, run your client application as that account and
+    don't store the user in the dataset in your dataset catalog. For backwards compatibility, this is not a
+    necessary attribute on a Dataset.
+
+    Args:
+        username: the username, possibly with a domain (e.g. 'username', 'DOMAIN/username')
+    """
+    def __init__(self, username: str):
+        self.username = username
+
+
 class Dataset:
     """
     Represents a dataset as metadata
@@ -189,14 +208,16 @@ class Dataset:
         description: non-functional, short description of the dataset, can include notes about
             what the dataset is or how it's populated
         database: a Database object that contains the data for the dataset
+        user: a User object that can be used to connect to the database to access the data
     """
     def __init__(self, name: str, definition: str, fields: 'List[Field]', description: str = None,
-                 database: 'Database' = None):
+                 database: 'Database' = None, user: 'User' = None):
         self.name = name
         self.definition = definition
         self.fields = fields
         self.description = description
         self.database = database
+        self.user = user
 
 
 class DatasetCatalog:

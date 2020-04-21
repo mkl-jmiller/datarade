@@ -40,6 +40,19 @@ class DatabaseSchema(ma.Schema):
         return models.Database(**data)
 
 
+class UserSchema(ma.Schema):
+    """
+    A marshmallow schema corresponding to a datarade User object
+
+    This schema is only called indirectly as an attribute for DatasetSchema
+    """
+    username = ma.fields.Str(required=True)
+
+    @ma.post_load()
+    def post_load(self, data: dict, **kwargs) -> 'models.User':
+        return models.User(**data)
+
+
 class DatasetSchema(ma.Schema):
     """
     A marshmallow schema corresponding to a datarade Dataset object
@@ -52,6 +65,7 @@ class DatasetSchema(ma.Schema):
     fields = ma.fields.Nested(FieldSchema, required=True, many=True)
     description = ma.fields.Str(required=False)
     database = ma.fields.Nested(DatabaseSchema, required=False)
+    user = ma.fields.Nested(UserSchema, required=False)
 
     @ma.post_load()
     def post_load(self, data: dict, **kwargs) -> 'models.Dataset':
