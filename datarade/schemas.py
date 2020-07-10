@@ -64,6 +64,8 @@ class DatasetSchema(ma.Schema):
     definition = ma.fields.Str(required=True)
     fields = ma.fields.Nested(FieldSchema, required=True, many=True)
     description = ma.fields.Str(required=False)
+    actual = ma.fields.Str(required=False)
+    expected = ma.fields.Str(required=False)
     database = ma.fields.Nested(DatabaseSchema, required=False)
     user = ma.fields.Nested(UserSchema, required=False)
 

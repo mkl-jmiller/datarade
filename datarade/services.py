@@ -93,8 +93,16 @@ def get_dataset(dataset_catalog: 'models.DatasetCatalog', dataset_name: str) -> 
     """
     config_yaml = dataset_catalog.git.get_file_contents(f'catalog/{dataset_name}/config.yaml')
     definition = dataset_catalog.git.get_file_contents(f'catalog/{dataset_name}/definition.sql')
+    try:
+        actual = dataset_catalog.git.get_file_contents(f'catalog/{dataset_name}/actual.sql')
+        expected = dataset_catalog.git.get_file_contents(f'catalog/{dataset_name}/expected.sql')
+    except exception as E:
+        actual = None
+        expected = None
     dataset_dict = yaml.safe_load(config_yaml)
     dataset_dict['definition'] = definition
+    dataset_dict['actual'] = actual
+    dataset_dict['expected'] = expected
     dataset_schema = schemas.DatasetSchema()
     return dataset_schema.load(dataset_dict)
 
