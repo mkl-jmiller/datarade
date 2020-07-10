@@ -30,6 +30,7 @@ class Field:
         description: non-functional, short description of the field, can include notes about
             what the field is or how it's populated
     """
+
     def __init__(self, name: str, type: str, description: str = None):
         self.name = name
         self.type = type
@@ -71,6 +72,7 @@ class Database:
         port: the port that the database is listening to on the server
         schema_name: the name of the schema
     """
+
     def __init__(self, driver: str, database_name: str, host: str, port: int = None, schema_name: str = None):
         self.driver = driver
         self.database_name = database_name
@@ -193,6 +195,7 @@ class User:
     Args:
         username: the username, possibly with a domain (e.g. 'username', 'DOMAIN/username')
     """
+
     def __init__(self, username: str):
         self.username = username
 
@@ -210,10 +213,14 @@ class Dataset:
         database: a Database object that contains the data for the dataset
         user: a User object that can be used to connect to the database to access the data
     """
-    def __init__(self, name: str, definition: str, fields: 'List[Field]', description: str = None,
+
+    def __init__(self, name: str, definition: str, actual: str, expected: str, fields: 'List[Field]',
+                 description: str = None,
                  database: 'Database' = None, user: 'User' = None):
         self.name = name
         self.definition = definition
+        self.actual = actual
+        self.expected = expected
         self.fields = fields
         self.description = description
         self.database = database
@@ -237,6 +244,7 @@ class DatasetCatalog:
         password: the password with read access to the repository, only used for Azure Repos, can also be the one-time
             git credentials password that bypasses MFA
     """
+
     def __init__(self, repository: str, organization: str, platform: str, project: str = None, branch: str = 'master',
                  username: str = None, password: str = None):
         self.repository = repository
@@ -276,6 +284,7 @@ class DatasetContainer:
         username: a user with create table and insert permissions on the schema
         password: the password for the user
     """
+
     def __init__(self, database: 'Database', username: str = None, password: str = None):
         self.database = database
         self.metadata = self.database.sqlalchemy_metadata(username=username, password=password)
